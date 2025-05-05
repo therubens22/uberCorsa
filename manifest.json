@@ -1,8 +1,8 @@
 {
-    "name": "Registro de Viajes Uber",
+    "name": "Mis Viajes Uber",
     "short_name": "Uber",
-    "description": "App para registrar viajes de Uber",
-    "start_url": "./",
+    "description": "Registro de viajes Uber",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#007bff",
