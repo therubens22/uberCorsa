@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro de Viajes Uber</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fas fa-car-side"></i> Mis Viajes Uber</h1>
+
+
+    <form id="viajeForm">
+      <input type="date" id="fecha" required />
+      <input type="text" id="inicio" placeholder="Lugar de inicio" required />
+      <input type="text" id="destino" placeholder="Destino" required />
+      <input type="number" id="monto" placeholder="Monto ganado ($)" required />
+      <input type="text" id="comentario" placeholder="Comentario (opcional)" />
+      <button type="submit">Agregar viaje</button>
+    </form>
+
+    <div class="resumen">
+      <h2>Total ganado: $<span id="totalGanado">0</span></h2>
+    </div>
+
+    <ul id="listaViajes"></ul>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
