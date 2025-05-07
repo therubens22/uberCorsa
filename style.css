@@ -68,3 +68,32 @@
     border-radius: 6px;
   }
   
+  .dia-actual {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  #nuevoDia {
+    margin-top: 0.5rem;
+    background-color: #28a745;
+  }
+  
+  #nuevoDia:hover {
+    background-color: #1e7e34;
+  }
+
+  #descargarDia {
+    margin-top: 1rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  #descargarDia:hover {
+    background-color: #218838;
+  }
+  
