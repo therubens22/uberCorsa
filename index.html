@@ -5,19 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registro de Viajes Uber</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#007bff">
-  <link rel="icon" type="image/jpeg" href="iconos/corsa456.jpg">
+  <meta name="theme-color" content="#007bff" />
+  <link rel="icon" type="image/jpeg" href="iconos/corsa456.jpg" />
 </head>
 <body>
   <div class="container">
     <h1><i class="fas fa-car-side"></i> Mis Viajes Uber</h1>
-
-    <div class="dia-actual">
-      Día actual: <strong id="diaActual"></strong>
-      <button id="nuevoDia">Comenzar nuevo día</button>
-    </div>
 
     <form id="viajeForm">
       <input type="date" id="fecha" required />
@@ -28,15 +23,14 @@
       <button type="submit">Agregar viaje</button>
     </form>
 
+    <div class="resumen">
+      <h2>Total ganado: $<span id="totalGanado">0</span></h2>
+    </div>
 
     <ul id="listaViajes"></ul>
 
-    <div class="resumen">
-      <h2>Total ganado: $<span id="totalGanado">0</span></h2>
-      <button id="descargarDia">Descargar día en TXT</button>
-    </div>
-    
-
+    <button id="descargarTxt" style="background-color: green; color: white;">Descargar día en TXT</button>
+    <button id="nuevoDia" style="background-color: crimson; color: white;">Reiniciar día</button>
   </div>
 
   <script src="app.js"></script>

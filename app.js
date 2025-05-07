@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const comentarioInput = document.getElementById("comentario");
   const lista = document.getElementById("listaViajes");
   const totalSpan = document.getElementById("totalGanado");
-  const botonDescarga = document.getElementById("descargarDia");
+  const botonDescarga = document.getElementById("descargarTxt");
+  const botonNuevoDia = document.getElementById("nuevoDia");
 
   let viajes = JSON.parse(localStorage.getItem("viajesUber")) || [];
   renderViajes();
@@ -25,9 +26,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
     viajes.push(nuevoViaje);
     localStorage.setItem("viajesUber", JSON.stringify(viajes));
-
     form.reset();
     renderViajes();
+  });
+
+  botonDescarga.addEventListener("click", () => {
+    if (viajes.length === 0) {
+      alert("No hay viajes para descargar.");
+      return;
+    }
+
+    let contenido = "REGISTRO DE VIAJES UBER\n\n";
+    let total = 0;
+
+    viajes.forEach((v, index) => {
+      contenido += `Viaje ${index + 1}:\n`;
+      contenido += `Fecha: ${v.fecha}\n`;
+      contenido += `De: ${v.inicio} ➡️ A: ${v.destino}\n`;
+      contenido += `Monto: $${v.monto.toFixed(2)}\n`;
+      if (v.comentario) {
+        contenido += `Comentario: ${v.comentario}\n`;
+      }
+      contenido += `------------------------\n`;
+      total += v.monto;
+    });
+
+    contenido += `\nTOTAL GANADO: $${total.toFixed(2)}\n`;
+
+    const blob = new Blob([contenido], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const enlace = document.createElement("a");
+    enlace.href = url;
+    enlace.download = `viajes_${new Date().toISOString().slice(0, 10)}.txt`;
+    enlace.click();
+    URL.revokeObjectURL(url);
+  });
+
+  botonNuevoDia.addEventListener("click", () => {
+    const confirmacion = confirm("¿Querés reiniciar el día? Se borrarán todos los viajes actuales.");
+    if (confirmacion) {
+      viajes = [];
+      localStorage.removeItem("viajesUber");
+      renderViajes();
+    }
   });
 
   function renderViajes() {
@@ -47,41 +88,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     totalSpan.textContent = total.toFixed(2);
   }
-
-  botonDescarga.addEventListener("click", () => {
-    if (viajes.length === 0) {
-      alert("No hay viajes para descargar.");
-      return;
-    }
-
-    // Agrupar por fecha
-    const viajesPorDia = {};
-    viajes.forEach(v => {
-      if (!viajesPorDia[v.fecha]) viajesPorDia[v.fecha] = [];
-      viajesPorDia[v.fecha].push(v);
-    });
-
-    // Tomamos la última fecha registrada
-    const fechas = Object.keys(viajesPorDia);
-    const diaActivo = fechas[fechas.length - 1];
-    const viajesDia = viajesPorDia[diaActivo];
-
-    let contenido = `Día de trabajo: ${diaActivo}\n\n`;
-    let total = 0;
-
-    viajesDia.forEach(v => {
-      contenido += `Desde: ${v.inicio} → ${v.destino}\nMonto: $${v.monto.toFixed(2)}\n`;
-      if (v.comentario) contenido += `Comentario: ${v.comentario}\n`;
-      contenido += `--------------------------\n`;
-      total += v.monto;
-    });
-
-    contenido += `\nTotal ganado: $${total.toFixed(2)}\n`;
-
-    const blob = new Blob([contenido], { type: 'text/plain' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `viajes_${diaActivo}.txt`;
-    link.click();
-  });
 });
