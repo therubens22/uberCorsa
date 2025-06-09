@@ -19,28 +19,34 @@
       <input type="text" id="inicio" placeholder="Lugar de inicio" required />
       <input type="text" id="destino" placeholder="Destino" required />
       <input type="number" id="monto" placeholder="Monto ganado ($)" required />
-      <input type="text" id="comentario" placeholder="Comentario (opcional)" />
-      <button type="submit">Agregar viaje</button>
       <select id="metodoPago" required>
         <option value="">Método de pago</option>
         <option value="efectivo">Efectivo</option>
         <option value="tarjeta">Tarjeta</option>
       </select>
-      
+      <input type="text" id="comentario" placeholder="Comentario (opcional)" />
+      <button type="submit">Agregar viaje</button>
     </form>
+
+    <div class="totales-extra">
+      <div>Efectivo: $<span id="totalEfectivo">0</span></div>
+      <div class="tarjeta">Tarjeta: $<span id="totalTarjeta">0</span></div>
+    </div>
 
     <div class="resumen">
       <h2>Total ganado: $<span id="totalGanado">0</span></h2>
     </div>
 
-    <p>Total efectivo: $<span id="totalEfectivo">0</span></p>
-<p>Total tarjeta: $<span id="totalTarjeta">0</span></p>
-
-
     <ul id="listaViajes"></ul>
 
-    <button id="descargarTxt" style="background-color: green; color: white;">Descargar día en TXT</button>
-    <button id="nuevoDia" style="background-color: crimson; color: white;">Reiniciar día</button>
+    <div class="botones">
+      <button id="descargarTxt" style="background-color: green; color: white;">
+        <i class="fas fa-download"></i> Descargar día en TXT
+      </button>
+      <button id="nuevoDia" style="background-color: crimson; color: white;">
+        <i class="fas fa-redo"></i> Reiniciar día
+      </button>
+    </div>
   </div>
 
   <script src="app.js"></script>
